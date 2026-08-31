@@ -1,6 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { applyMissionReward } from '../lib/reward-engine.mjs'
+import rewardEngine from '../.test-dist/reward-engine.js'
+
+const { applyMissionReward } = rewardEngine
 
 const initial = () => ({started:true,activeMission:'letter',completedMissions:[],xp:0,ravos:0,fragments:[],keys:0,medals:[],xpHistory:[],ravoTransactions:[]})
 const letter = {id:'letter',title:'A Carta',reward:{xp:250,ravos:100,fragment:1}}

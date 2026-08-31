@@ -1,6 +1,6 @@
 import { missions } from '@/data/belem-content'
 import type { GameAction, GameState, MissionId, MissionStatus } from './game-types'
-import { applyMissionReward } from './reward-engine.mjs'
+import { applyMissionReward } from './reward-engine'
 
 export const initialGameState: GameState = {version:1,started:false,activeMission:null,completedMissions:[],xp:0,ravos:0,fragments:[],keys:0,medals:[],xpHistory:[],ravoTransactions:[]}
 
