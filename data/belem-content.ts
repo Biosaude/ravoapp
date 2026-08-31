@@ -16,11 +16,10 @@ export const culturalQuestions: CulturalQuestion[] = [{
 
 export const missions: MissionDefinition[] = [
   {id:'letter',number:1,title:'A Carta',subtitle:'Uma mensagem atravessou a chuva',location:'CAMPINA · NARRATIVA',duration:'3 min',reward:{xp:250,ravos:100,fragment:1}},
-  {id:'market',number:2,title:'Os Segredos do Ver-o-Peso',subtitle:'Siga as marcas entre o ferro e o rio',location:'VER-O-PESO · INVESTIGAÇÃO',duration:'5 min',reward:{xp:400,ravos:120}},
-  {id:'code',number:3,title:'O Código da Cidade Velha',subtitle:'Azulejos guardam uma sequência',location:'CIDADE VELHA · PUZZLE',duration:'4 min',reward:{xp:500,ravos:150,fragment:2}},
-  {id:'guardian',number:4,title:'O Guardião',subtitle:'Um sinal espera no Forte',location:'FORTE DO PRESÉPIO · PRESENCIAL',duration:'4 min',reward:{xp:750,ravos:200,keys:1}},
-  {id:'secret',number:5,title:'O Primeiro Segredo',subtitle:'Reúna as memórias recuperadas',location:'BAÍA DO GUAJARÁ · FINAL',duration:'5 min',reward:{xp:1000,ravos:300,medal:'Guardião do Primeiro Fragmento'}},
+  {id:'market',number:2,title:'A Mensagem',subtitle:'Os símbolos escondem um destino',location:'BAÍA DO GUAJARÁ · DECODIFICAÇÃO',duration:'4 min',reward:{xp:400,ravos:120,fragment:2}},
+  {id:'code',number:3,title:'O Fragmento',subtitle:'Reconstrua as margens do mapa',location:'CIDADE VELHA · MONTAGEM',duration:'4 min',reward:{xp:500,ravos:150,fragment:3}},
+  {id:'guardian',number:4,title:'O Mercado',subtitle:'Siga as marcas entre o ferro e o rio',location:'VER-O-PESO · INVESTIGAÇÃO',duration:'5 min',reward:{xp:750,ravos:200,fragment:4}},
+  {id:'secret',number:5,title:'O Guardião',subtitle:'Reúna as quatro pistas recuperadas',location:'FORTE DO PRESÉPIO · FINAL',duration:'5 min',reward:{xp:1000,ravos:300,fragment:5,keys:1,medal:'Guardião do Mapa Desaparecido'}},
 ]
 
 export const chapterTitle = 'O Mapa Desaparecido'
-
