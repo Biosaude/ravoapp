@@ -18,6 +18,7 @@ import { GameDialog, MissionComplete, PuzzleContainer } from './game-ui'
 
 interface MissionExperienceProps {
   id: MissionId
+  replay?: boolean
   onComplete: () => void
   onExit: () => void
   onNext: () => void
@@ -25,6 +26,7 @@ interface MissionExperienceProps {
 
 export function MissionExperience({
   id,
+  replay = false,
   onComplete,
   onExit,
   onNext,
@@ -40,7 +42,7 @@ export function MissionExperience({
   if (done) {
     return (
       <main className="flex min-h-dvh items-center px-6">
-        <MissionComplete chapter={id === 'secret'} reward={mission.reward} onContinue={onNext} />
+        <MissionComplete chapter={id === 'secret'} reward={replay ? {...mission.reward, xp: 0, ravos: 0} : mission.reward} onContinue={onNext} />
       </main>
     )
   }

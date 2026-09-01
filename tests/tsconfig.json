@@ -9,5 +9,5 @@
     "rootDir": "../lib",
     "outDir": "../.test-dist"
   },
-  "include": ["../lib/game-types.ts", "../lib/reward-engine.ts"]
+  "include": ["../lib/game-types.ts", "../lib/reward-engine.ts", "../lib/storage-adapter.ts", "../lib/level.ts"]
 }
