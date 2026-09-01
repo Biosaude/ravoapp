@@ -1,17 +1,12 @@
 import { missions } from '@/data/belem-content'
 import type { GameAction, GameState, MissionId, MissionStatus } from './game-types'
 import { applyMissionReward } from './reward-engine'
+import { calculateLevel } from './level'
 
-export const initialGameState: GameState = {version:1,started:false,activeMission:null,completedMissions:[],xp:0,ravos:0,fragments:[],keys:0,medals:[],xpHistory:[],ravoTransactions:[],player:{name:'Rafael Almeida',nickname:'ExploradorRA',avatar:null},preferences:{music:true,sound:true,vibration:true,animations:true,profileVisible:true,rankingVisible:true,notifications:true,highContrast:false,largeText:false}}
+export const initialGameState: GameState = {version:1,started:false,activeMission:null,completedMissions:[],xp:0,ravos:0,fragments:[],keys:0,medals:[],xpHistory:[],ravoTransactions:[],player:{name:'',nickname:'',avatar:null,onboarded:false},preferences:{music:false,sound:false,vibration:true,animations:true,profileVisible:true,rankingVisible:true,notifications:false,highContrast:false,largeText:false}}
 
 export function getLevel(xp: number) {
-  const safe = Math.max(0, xp)
-  const thresholds = [0, 500, 1250, 2250, 3500, 5000]
-  let level = 1
-  thresholds.forEach((value, index) => { if (safe >= value) level = index + 1 })
-  const floor = thresholds[level - 1]
-  const ceiling = thresholds[level] ?? floor + 2000
-  return {level, title: level >= 5 ? 'Guardião' : level >= 3 ? 'Cartógrafo' : 'Explorador', current:safe-floor, needed:ceiling-floor, total:safe}
+  return calculateLevel(xp)
 }
 
 export function getMissionStatus(state: GameState, id: MissionId): MissionStatus {

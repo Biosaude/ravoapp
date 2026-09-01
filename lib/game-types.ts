@@ -16,7 +16,7 @@ export interface GameState {
   medals: string[]
   xpHistory: LedgerEntry[]
   ravoTransactions: LedgerEntry[]
-  player: { name: string; nickname: string; avatar: string | null }
+  player: { name: string; nickname: string; avatar: string | null; onboarded: boolean }
   preferences: { music: boolean; sound: boolean; vibration: boolean; animations: boolean; profileVisible: boolean; rankingVisible: boolean; notifications: boolean; highContrast: boolean; largeText: boolean }
 }
 
