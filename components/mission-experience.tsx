@@ -46,7 +46,7 @@ export function MissionExperience({
   }
 
   return (
-    <main className="min-h-dvh pb-10">
+    <main className="mission-shell min-h-dvh pb-10 text-white">
       <header className="px-5 pb-5 pt-6">
         <button onClick={onExit} className="text-[10px] font-bold text-white/50">
           ← SAIR E SALVAR

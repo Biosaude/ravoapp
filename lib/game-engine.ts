@@ -2,7 +2,7 @@ import { missions } from '@/data/belem-content'
 import type { GameAction, GameState, MissionId, MissionStatus } from './game-types'
 import { applyMissionReward } from './reward-engine'
 
-export const initialGameState: GameState = {version:1,started:false,activeMission:null,completedMissions:[],xp:0,ravos:0,fragments:[],keys:0,medals:[],xpHistory:[],ravoTransactions:[]}
+export const initialGameState: GameState = {version:1,started:false,activeMission:null,completedMissions:[],xp:0,ravos:0,fragments:[],keys:0,medals:[],xpHistory:[],ravoTransactions:[],player:{name:'Rafael Almeida',nickname:'ExploradorRA',avatar:null},preferences:{music:true,sound:true,vibration:true,animations:true,profileVisible:true,rankingVisible:true,notifications:true,highContrast:false,largeText:false}}
 
 export function getLevel(xp: number) {
   const safe = Math.max(0, xp)
@@ -23,8 +23,10 @@ export function getMissionStatus(state: GameState, id: MissionId): MissionStatus
 }
 
 export function gameReducer(state: GameState, action: GameAction): GameState {
-  if (action.type === 'HYDRATE') return {...initialGameState,...action.state,xp:Math.max(0,action.state.xp),ravos:Math.max(0,action.state.ravos)}
+  if (action.type === 'HYDRATE') return {...initialGameState,...action.state,player:{...initialGameState.player,...action.state.player},preferences:{...initialGameState.preferences,...action.state.preferences},xp:Math.max(0,action.state.xp),ravos:Math.max(0,action.state.ravos)}
   if (action.type === 'RESET') return initialGameState
+  if (action.type === 'UPDATE_PLAYER') return {...state,player:{...state.player,...action.player}}
+  if (action.type === 'UPDATE_PREFERENCE') return {...state,preferences:{...state.preferences,[action.key]:action.value}}
   if (action.type === 'START_CHAPTER') return {...state, started:true}
   if (action.type === 'START_MISSION') {
     const status = getMissionStatus(state, action.missionId)

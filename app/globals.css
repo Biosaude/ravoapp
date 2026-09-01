@@ -4,3 +4,20 @@
 @keyframes pulse-soft{50%{box-shadow:0 0 0 9px #d8aa5b18}}@keyframes toast-in{from{opacity:0;transform:translate(-50%,-18px)}}@keyframes sheet-in{from{transform:translateY(25px);opacity:0}}@keyframes reveal{from{opacity:0;transform:scale(.94)}}
 button:focus-visible{outline:2px solid #2ee5a7;outline-offset:3px}button:disabled{cursor:not-allowed}@media(max-width:340px){.app-shell main,.app-shell header{padding-left:1rem;padding-right:1rem}.hero{padding:1.15rem}.hero h2{font-size:2rem}.mission-card{padding:.75rem;gap:.65rem}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 .map-piece{transition:border-color .2s,transform .2s}.map-art{background-color:#173d33;background-image:linear-gradient(25deg,transparent 46%,#3cb9c866 47% 54%,transparent 55%),radial-gradient(circle at 70% 32%,#d8aa5b 0 4px,transparent 5px),linear-gradient(110deg,transparent 60%,#2ee5a733 61%)}.map-art-2{transform:rotate(90deg)}.map-art-3{transform:rotate(180deg)}.map-art-4{transform:rotate(270deg)}.regional-scene{background-image:linear-gradient(180deg,#102d26,#1a4338 60%,#0b2722 61%),linear-gradient(90deg,transparent,#d8aa5b12)}.expedition-pin{animation:pulse-soft 2s ease-in-out infinite}
+
+/* RAVO 2.0 — vibrant, mobile-first exploration system */
+:root{color-scheme:light;--sky:#118ed0;--turquoise:#10bfb0;--amazon:#16a36a;--gold:#ffc83d;--coral:#ff684f;--purple:#7857d8;--ink:#17304a;--paper:#f5fbff}
+html,body{background:#dff5ff;color:var(--ink)}
+.app-shell{background:radial-gradient(circle at 100% 0,#b7edff 0,transparent 35%),linear-gradient(180deg,#f4fcff,#fff7df 72%,#ecfbf4);box-shadow:0 0 80px #075c8130}
+.glass{background:rgba(255,255,255,.86);border-color:rgba(17,142,208,.14);box-shadow:0 12px 30px #075c8112;backdrop-filter:blur(16px)}
+.eyebrow{color:var(--sky)}
+.btn-primary{background:linear-gradient(135deg,#ffd64d,#ffae35);color:#17304a;box-shadow:0 8px 0 #dc8a20,0 15px 25px #ffae3540}
+.belem-hero{min-height:330px;background:linear-gradient(145deg,#076fb9,#10bfb0 68%,#16a36a);isolation:isolate}
+.belem-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,#ffd34f 0 42px,transparent 43px),linear-gradient(160deg,transparent 52%,#006e7066 53%);z-index:-1}
+.city-silhouette{position:absolute;right:-18px;bottom:0;width:58%;height:58%;opacity:.35;background:linear-gradient(90deg,transparent 8%,#fff 9% 22%,transparent 23% 28%,#fff 29% 48%,transparent 49% 55%,#fff 56% 80%,transparent 81%),linear-gradient(0deg,#fff 0 20%,transparent 21%);clip-path:polygon(0 100%,0 70%,12% 70%,12% 45%,32% 45%,32% 58%,43% 58%,43% 25%,50% 5%,57% 25%,57% 61%,72% 61%,72% 38%,92% 38%,92% 68%,100% 68%,100% 100%)}
+.profile-pass{background:linear-gradient(135deg,#7857d8,#118ed0 55%,#10bfb0)}
+.reward-toast{background:#fff;color:var(--ink);border-color:#16a36a}.sheet-in{background:#f7fcff;border-color:#118ed033;color:var(--ink)}
+.letter-paper{color:#18241e}.market-scene{color:white}.topo{color:white}.map-piece{color:white}.chapter-reveal{color:var(--ink)}
+body{font-family:Inter,ui-rounded,"Avenir Next",system-ui,-apple-system,sans-serif}.display{font-family:"Arial Rounded MT Bold",Inter,system-ui,sans-serif}
+.mission-shell{background:radial-gradient(circle at 90% 0,#16c8b8 0,transparent 30%),linear-gradient(180deg,#087abe,#0b527f 60%,#17304a)}
+.app-shell [class*="text-white/"]{color:#5b7084}.belem-hero [class*="text-white/"],.profile-pass [class*="text-white/"],.mission-shell [class*="text-white/"],.topo [class*="text-white/"]{color:rgba(255,255,255,.72)}
