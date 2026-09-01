@@ -16,6 +16,8 @@ export interface GameState {
   medals: string[]
   xpHistory: LedgerEntry[]
   ravoTransactions: LedgerEntry[]
+  player: { name: string; nickname: string; avatar: string | null }
+  preferences: { music: boolean; sound: boolean; vibration: boolean; animations: boolean; profileVisible: boolean; rankingVisible: boolean; notifications: boolean; highContrast: boolean; largeText: boolean }
 }
 
 export type GameAction =
@@ -23,4 +25,6 @@ export type GameAction =
   | { type: 'START_CHAPTER' }
   | { type: 'START_MISSION'; missionId: MissionId }
   | { type: 'COMPLETE_MISSION'; missionId: MissionId }
+  | { type: 'UPDATE_PLAYER'; player: Partial<GameState['player']> }
+  | { type: 'UPDATE_PREFERENCE'; key: keyof GameState['preferences']; value: boolean }
   | { type: 'RESET' }
