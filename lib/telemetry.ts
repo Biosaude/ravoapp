@@ -1,0 +1,2 @@
+export type TelemetryEvent='mission_started'|'mission_completed'|'mission_failed'|'hint_used'|'chapter_completed'|'season_completed'|'ranking_viewed'|'prize_opened'
+export function track(event:TelemetryEvent,data:Record<string,unknown>={}){if(typeof window==='undefined')return;const key='ravo-telemetry-v1';const previous=JSON.parse(localStorage.getItem(key)??'[]') as unknown[];localStorage.setItem(key,JSON.stringify([...previous.slice(-199),{event,data,at:new Date().toISOString()}]));if(process.env.NODE_ENV==='development')console.info('[RAVO]',event,data)}
