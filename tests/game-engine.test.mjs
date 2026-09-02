@@ -3,10 +3,12 @@ import assert from 'node:assert/strict'
 import rewardEngine from '../.test-dist/reward-engine.js'
 import storageAdapter from '../.test-dist/storage-adapter.js'
 import levelRules from '../.test-dist/level.js'
+import competition from '../.test-dist/competition.js'
 
 const { applyMissionReward } = rewardEngine
 const { saveGame, loadGame, clearGame, STORAGE_KEY } = storageAdapter
 const { calculateLevel } = levelRules
+const { calculateMissionScore, rankPlayers, seasonTitle } = competition
 
 const initial = () => ({started:true,activeMission:'letter',completedMissions:[],xp:0,ravos:0,fragments:[],keys:0,medals:[],xpHistory:[],ravoTransactions:[]})
 const letter = {id:'letter',title:'A Carta',reward:{xp:250,ravos:100,fragment:1}}
@@ -18,3 +20,6 @@ test('recompensas negativas são impedidas',()=>{const result=applyMissionReward
 test('missões sequenciais produzem progressão determinística',()=>{const first=applyMissionReward(initial(),letter);const second=applyMissionReward(first,{id:'market',title:'Mensagem',reward:{xp:400,ravos:80}});assert.equal(second.xp,650);assert.equal(second.ravos,180);assert.deepEqual(second.completedMissions,['letter','market'])})
 test('nível segue os marcos centrais',()=>{assert.equal(calculateLevel(999).level,1);assert.equal(calculateLevel(1000).level,2);assert.equal(calculateLevel(2500).level,3);assert.equal(calculateLevel(8000).level,5)})
 test('estado persiste, recarrega e pode ser reiniciado',()=>{const values=new Map();const storage={getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value),removeItem:key=>values.delete(key)};const state={...initial(),player:{name:'Ana',nickname:'AnaBelem',avatar:null,onboarded:true}};saveGame(storage,state);assert.equal(loadGame(storage).player.nickname,'AnaBelem');clearGame(storage);assert.equal(values.has(STORAGE_KEY),false);assert.equal(loadGame(storage),null)})
+test('score central premia precisão, ausência de dicas e final de capítulo',()=>{const mission={chapter:2,number:5,reward:{xp:900}};const perfect=calculateMissionScore(mission,{attempts:1,hintsUsed:0,durationMs:1000,optional:true});const assisted=calculateMissionScore(mission,{attempts:4,hintsUsed:3,durationMs:9000});assert.ok(perfect>assisted)})
+test('ranking desempata sem aleatoriedade por sem dicas, erros e tempo',()=>{const base={avatar:null,level:1,score:1000,missions:5};const ranked=rankPlayers([{...base,id:'slow',nickname:'Slow',noHint:4,errors:1,durationMs:5000},{...base,id:'fast',nickname:'Fast',noHint:4,errors:1,durationMs:3000},{...base,id:'hint',nickname:'Hint',noHint:3,errors:0,durationMs:1000}]);assert.deepEqual(ranked.map(x=>x.id),['fast','slow','hint'])})
+test('títulos reconhecem campeão, pódio e concluintes',()=>{assert.equal(seasonTitle(1,40),'CAMPEÃO');assert.equal(seasonTitle(3,40),'LENDA DE BELÉM');assert.equal(seasonTitle(10,40),'GUARDIÃO');assert.equal(seasonTitle(20,40),'EXPLORADOR')})
